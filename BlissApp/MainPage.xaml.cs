@@ -27,7 +27,7 @@ namespace BlissApp
     {
 
         //for testing purposes, to force an initial connection failure
-        private bool firstAttempt = true;
+        //private bool firstAttempt = true;
 
         public MainPage()
         {
@@ -51,17 +51,19 @@ namespace BlissApp
             try {
                 httpResponse = await httpClient.GetAsync(healthReq);
 
-                if(httpResponse.StatusCode == HttpStatusCode.Ok && ! firstAttempt) {
-                    Debug.WriteLine("Celebration!");
+                if(httpResponse.StatusCode == HttpStatusCode.Ok /*&& ! firstAttempt*/) {
+                    Debug.WriteLine("Health OK");
                     ShowConnectionFailedResponse(false);
+                    Frame.Navigate(typeof(QuestionsScreen));
+
                 }
                 else {
                     ShowConnectionFailedResponse(true);
                 }
 
-                if (firstAttempt) {
-                    firstAttempt = !firstAttempt;
-                }
+                //if (firstAttempt) {
+                //    firstAttempt = !firstAttempt;
+                //}
 
             }
             catch (Exception e) {
