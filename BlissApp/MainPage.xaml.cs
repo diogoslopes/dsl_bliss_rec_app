@@ -25,12 +25,16 @@ namespace BlissApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
+
+        //for testing purposes, to force an initial connection failure
+        private bool firstAttempt = true;
+
         public MainPage()
         {
             this.InitializeComponent();
-
-            textMsg.Text = "";
-
+            
+            ShowConnectionFailedResponse(false);
+            
             AttemptConnection();
 
         }
@@ -47,8 +51,16 @@ namespace BlissApp
             try {
                 httpResponse = await httpClient.GetAsync(healthReq);
 
-                if(httpResponse.StatusCode == HttpStatusCode.Ok) {
+                if(httpResponse.StatusCode == HttpStatusCode.Ok && ! firstAttempt) {
                     Debug.WriteLine("Celebration!");
+                    ShowConnectionFailedResponse(false);
+                }
+                else {
+                    ShowConnectionFailedResponse(true);
+                }
+
+                if (firstAttempt) {
+                    firstAttempt = !firstAttempt;
                 }
 
             }
@@ -62,6 +74,18 @@ namespace BlissApp
 
             AttemptConnection();
             
+        }
+
+
+        private void ShowConnectionFailedResponse(bool failed) {
+            if( failed ) {
+                textMsg.Visibility = Visibility.Visible;
+                retryButton.Visibility = Visibility.Visible;
+            }
+            else {
+                textMsg.Visibility = Visibility.Collapsed;
+                retryButton.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }
