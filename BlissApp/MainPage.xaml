@@ -8,6 +8,11 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Center" Margin="0,290,0,726" TextWrapping="Wrap" Text="Bliss Recruitment App" VerticalAlignment="Top" TextAlignment="Center" FontSize="48"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Center" Margin="0,465,0,0" TextWrapping="Wrap" Text="Loading... Please wait" VerticalAlignment="Top" FontSize="32"/>
+        <TextBlock x:Name="textMsg" HorizontalAlignment="Center" Margin="0,559,0,0" TextWrapping="Wrap" Text="____________" VerticalAlignment="Top" FontSize="32"/>
+        
+        <Button x:Name="retryButton" Content="Retry?" HorizontalAlignment="Center" Margin="0,670,0,0" VerticalAlignment="Top" FontSize="32" Click ="retryButton_Click" />
 
     </Grid>
 </Page>

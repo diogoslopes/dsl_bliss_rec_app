@@ -13,6 +13,9 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+using System.Diagnostics;
+using Windows.Web.Http;
+
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace BlissApp
@@ -25,6 +28,40 @@ namespace BlissApp
         public MainPage()
         {
             this.InitializeComponent();
+
+            textMsg.Text = "";
+
+            AttemptConnection();
+
+        }
+
+        private async void AttemptConnection() {
+
+            HttpClient httpClient = new HttpClient();
+
+            Uri healthReq = new Uri("https://private-anon-23e1551d40-blissrecruitmentapi.apiary-mock.com/health");
+
+
+            HttpResponseMessage httpResponse;
+
+            try {
+                httpResponse = await httpClient.GetAsync(healthReq);
+
+                if(httpResponse.StatusCode == HttpStatusCode.Ok) {
+                    Debug.WriteLine("Celebration!");
+                }
+
+            }
+            catch (Exception e) {
+                Debug.WriteLine("Error: " + e.ToString());
+            }
+
+        }
+
+        private void retryButton_Click(object sender, RoutedEventArgs e) {
+
+            AttemptConnection();
+            
         }
     }
 }
