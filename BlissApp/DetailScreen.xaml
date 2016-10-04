@@ -15,7 +15,7 @@
 
         <GridView Width="400" Margin="0,240,0,100">
             <Image x:Name="questionImage" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Top" Source="{Binding QuestionImage, ElementName=page}"/>
-            <ListView x:Name="choiceList" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Top" Width="400"/>
+            <ListView x:Name="choiceList" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Top" Width="400" ItemClick="choiceList_ItemClick" IsItemClickEnabled="True"/>
 
         </GridView>
 

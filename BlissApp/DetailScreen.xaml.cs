@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -50,6 +51,20 @@ namespace BlissApp {
 
         private void backButton_Click(object sender, RoutedEventArgs e) {
             Frame.GoBack();
+        }
+
+        private void choiceList_ItemClick(object sender, ItemClickEventArgs e) {
+
+            CastVote();
+
+        }
+
+        private async void CastVote() {
+
+            //actual vote code here
+
+            MessageDialog m = new MessageDialog("Thank you for voting!");
+            await m.ShowAsync();
         }
     }
 }
