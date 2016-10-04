@@ -67,7 +67,9 @@ namespace BlissApp {
 
                 List<Question> questionListSource = new List<Question>();
 
-                for(uint i = 0; i < jsonArray.Count; i++) {
+                currentListOffset += jsonArray.Count;
+
+                for (uint i = 0; i < jsonArray.Count; i++) {
 
                     JsonObject current = jsonArray.GetObjectAt(i);
 
@@ -108,6 +110,15 @@ namespace BlissApp {
             catch (Exception e) {
                 Debug.WriteLine("Error: " + e.ToString());
             }
+
+        }
+
+        private void searchButton_Click(object sender, RoutedEventArgs e) {
+
+            currentListOffset = 0;
+
+            GetQuestions(QUESTION_LIMIT, currentListOffset, searchBox.Text);
+
 
         }
     }
