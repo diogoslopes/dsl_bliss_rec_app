@@ -26,6 +26,8 @@ namespace BlissApp {
             set;
         }
 
+        public ImageSource QuestionImage { get; set; }
+
         public DetailScreen() {
 
             this.InitializeComponent();
@@ -38,9 +40,16 @@ namespace BlissApp {
 
             if(current != null) {
                 Title = current.QuestionText;
+                QuestionImage = current.QuestionImage;
+                choiceList.ItemsSource = current.choices.ToList<Choice>();
+
             }
 
 
+        }
+
+        private void backButton_Click(object sender, RoutedEventArgs e) {
+            Frame.GoBack();
         }
     }
 }

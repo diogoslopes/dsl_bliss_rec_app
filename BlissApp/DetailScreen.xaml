@@ -9,10 +9,15 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+        <Button x:Name="backButton" Content="Back" HorizontalAlignment="Center" Margin="0,100,300,0" VerticalAlignment="Top" Click="backButton_Click"/>
+        
         <TextBlock x:Name="detailScreenTitle" HorizontalAlignment="Center" Margin="0,150,0,0" TextWrapping="Wrap" Text="{Binding Title, ElementName=page}" VerticalAlignment="Top" TextAlignment="Center" FontSize="48"/>
-        <Image x:Name="questionImage" HorizontalAlignment="Center" Margin="0,240,0,0" VerticalAlignment="Top" Width="400" Height="397"/>
-        <ListView x:Name="choiceList" HorizontalAlignment="Center" Margin="0,660,0,0" VerticalAlignment="Top" Width="400"/>
 
+        <GridView Width="400" Margin="0,240,0,100">
+            <Image x:Name="questionImage" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Top" Source="{Binding QuestionImage, ElementName=page}"/>
+            <ListView x:Name="choiceList" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Top" Width="400"/>
+
+        </GridView>
 
     </Grid>
 </Page>

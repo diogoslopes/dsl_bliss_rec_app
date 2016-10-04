@@ -6,12 +6,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="100"
-    d:DesignWidth="400">
+    d:DesignHeight="50"
+    d:DesignWidth="400" Height="Auto">
 
-    <Grid Height="100" Width="400">
-        <TextBlock x:Name="choiceText" HorizontalAlignment="Left" Margin="0,29,0,28" TextWrapping="Wrap" Text="{Binding ChoiceStr, ElementName=userControl}" VerticalAlignment="Center" Width="245" FontSize="32"/>
-        <TextBlock x:Name="voteNum" HorizontalAlignment="Right" Margin="0" TextWrapping="Wrap" Text="{Binding Votes, ElementName=userControl}" VerticalAlignment="Center" FontSize="32"/>
+    <Grid Width="400">
+        <TextBlock x:Name="choiceText" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="{Binding ChoiceStr, ElementName=userControl}" VerticalAlignment="Center" Width="245" FontSize="26.667"/>
+        <TextBlock x:Name="voteNum" HorizontalAlignment="Right" Margin="0,0,30,0" TextWrapping="Wrap" Text="{Binding Votes, ElementName=userControl}" VerticalAlignment="Center" FontSize="32"/>
 
     </Grid>
 </UserControl>

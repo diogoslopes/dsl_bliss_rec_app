@@ -27,6 +27,9 @@ namespace BlissApp {
 
         public ImageSource QuestionImage { get; set; }
 
+        public Choice[] choices { get; set; }
+
+
         public Question() {
             this.InitializeComponent();
         }
@@ -37,6 +40,8 @@ namespace BlissApp {
 
             QuestionImage = new BitmapImage(new Uri(img));
             ThumbImage = new BitmapImage(new Uri(thumb));
+
+            this.choices = choices;
         }
         
     }
