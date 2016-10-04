@@ -1,0 +1,17 @@
+﻿<UserControl x:Name="userControl"
+    x:Class="BlissApp.Choice"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BlissApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="100"
+    d:DesignWidth="400">
+
+    <Grid Height="100" Width="400">
+        <TextBlock x:Name="choiceText" HorizontalAlignment="Left" Margin="0,29,0,28" TextWrapping="Wrap" Text="{Binding ChoiceStr, ElementName=userControl}" VerticalAlignment="Center" Width="245" FontSize="32"/>
+        <TextBlock x:Name="voteNum" HorizontalAlignment="Right" Margin="0" TextWrapping="Wrap" Text="{Binding Votes, ElementName=userControl}" VerticalAlignment="Center" FontSize="32"/>
+
+    </Grid>
+</UserControl>

@@ -21,20 +21,11 @@ using Windows.Web.Http;
 namespace BlissApp {
     public sealed partial class Question : UserControl {
 
-        public string QuestionText {
-            get;
-            set;
-        }
+        public string QuestionText { get; set; }
 
-        public ImageSource ThumbImage {
-            get;
-            set;
-        }
+        public ImageSource ThumbImage { get; set; }
 
-        public ImageSource QuestionImage {
-            get;
-            set;
-        }
+        public ImageSource QuestionImage { get; set; }
 
         public Question() {
             this.InitializeComponent();
@@ -49,18 +40,5 @@ namespace BlissApp {
         }
         
     }
-
-
-    public class Choice{
-
-        public string choiceStr;
-        public uint votes;
-        
-        public Choice(string choice, uint votes) {
-            this.choiceStr = choice;
-            this.votes = votes;
-        }
-
-    }
-
+    
 }

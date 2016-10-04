@@ -121,5 +121,11 @@ namespace BlissApp {
 
 
         }
+
+        private void questionList_ItemClick(object sender, ItemClickEventArgs e) {
+            
+            Frame.Navigate(typeof(DetailScreen), e.ClickedItem);
+
+        }
     }
 }
