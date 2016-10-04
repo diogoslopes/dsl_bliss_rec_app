@@ -10,7 +10,7 @@
     d:DesignWidth="400" HorizontalAlignment="Center" VerticalAlignment="Center">
 
     <Grid Height="100" Width="400">
-        <Image x:Name="image" HorizontalAlignment="Left" Height="100" Margin="0" VerticalAlignment="Center" Width="100"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="100" Margin="0" VerticalAlignment="Center" Width="100" Source="{Binding ThumbImage, ElementName=userControl}"/>
         <TextBlock x:Name="questionText" HorizontalAlignment="Left" Height="45" Margin="110,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="270" Text="{Binding QuestionText, ElementName=userControl}" />
 
     </Grid>

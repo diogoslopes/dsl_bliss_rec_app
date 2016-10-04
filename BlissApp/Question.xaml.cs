@@ -11,7 +11,9 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using Windows.Web.Http;
 
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
@@ -23,17 +25,42 @@ namespace BlissApp {
             get;
             set;
         }
-  
+
+        public ImageSource ThumbImage {
+            get;
+            set;
+        }
+
+        public ImageSource QuestionImage {
+            get;
+            set;
+        }
 
         public Question() {
             this.InitializeComponent();
         }
 
-        public Question(uint id, string text) {
+        public Question(uint id, string text, string img, string thumb, string date, Choice[]choices) : this(){
 
             QuestionText = id + ": " + text;
-            this.InitializeComponent();
 
+            QuestionImage = new BitmapImage(new Uri(img));
+            ThumbImage = new BitmapImage(new Uri(thumb));
         }
+        
     }
+
+
+    public class Choice{
+
+        public string choiceStr;
+        public uint votes;
+        
+        public Choice(string choice, uint votes) {
+            this.choiceStr = choice;
+            this.votes = votes;
+        }
+
+    }
+
 }
