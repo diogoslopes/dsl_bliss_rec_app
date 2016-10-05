@@ -102,5 +102,12 @@ namespace BlissApp {
            
             
         }
+
+        private void shareButton_Click(object sender, RoutedEventArgs e) {
+            string currUrl = "https://private-anon-8cea0feb9b-blissrecruitmentapi.apiary-mock.com/questions/" + detailedQuestion.id;
+
+            Frame.Navigate(typeof(ShareScreen), currUrl);
+        }
+        
     }
 }

@@ -114,6 +114,9 @@
     <Compile Include="QuestionsScreen.xaml.cs">
       <DependentUpon>QuestionsScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ShareScreen.xaml.cs">
+      <DependentUpon>ShareScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +157,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="QuestionsScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ShareScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
