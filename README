@@ -2,4 +2,9 @@
 How to run the application:
 	- Open /BlissApp/BlissApp.sln in Visual Studio 2015
 	- Build the solution (Ctrl+Shift+B or F7 or click Build->"Build Solution").
+		- make sure to target the solution for x64
 	- Run the project (press F5 or click Debug->"Start Debugging").
+	
+Notes: 
+	- some aditional development tools might be needed in case they're not yet installed on your machine. Visual Studio might prompt you for this.
+	- Windows must be in developer mode for the build to suceed. (https://msdn.microsoft.com/pt-pt/windows/uwp/get-started/enable-your-device-for-development)
