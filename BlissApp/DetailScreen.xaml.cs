@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Data.Json;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Popups;
@@ -13,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.Web.Http;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -20,7 +22,7 @@ namespace BlissApp {
     
     public sealed partial class DetailScreen : Page {
 
-        private Question current;
+        private Question detailedQuestion;
 
         public string Title {
             get;
@@ -37,12 +39,12 @@ namespace BlissApp {
 
 
         protected override void OnNavigatedTo(NavigationEventArgs e) {
-            current = e.Parameter as Question;
+            detailedQuestion = e.Parameter as Question;
 
-            if(current != null) {
-                Title = current.QuestionText;
-                QuestionImage = current.QuestionImage;
-                choiceList.ItemsSource = current.choices.ToList<Choice>();
+            if(detailedQuestion != null) {
+                Title = detailedQuestion.QuestionText;
+                QuestionImage = detailedQuestion.QuestionImage;
+                choiceList.ItemsSource = detailedQuestion.choices.ToList<Choice>();
 
             }
 
@@ -55,16 +57,50 @@ namespace BlissApp {
 
         private void choiceList_ItemClick(object sender, ItemClickEventArgs e) {
 
-            CastVote();
+            CastVote(e.ClickedItem);
 
         }
 
-        private async void CastVote() {
+        private async void CastVote(object clickedItem) {
 
-            //actual vote code here
+            int clickedItemIndex = choiceList.Items.IndexOf(clickedItem);
 
-            MessageDialog m = new MessageDialog("Thank you for voting!");
-            await m.ShowAsync();
+            HttpClient httpClient = new HttpClient();
+
+            JsonObject jsonStr = Utils.Question2Json(detailedQuestion, clickedItemIndex);
+
+            HttpStringContent httpContent = new HttpStringContent(
+                jsonStr.Stringify(),
+                Windows.Storage.Streams.UnicodeEncoding.Utf8,
+                "application/json"
+            );
+
+            Uri putTo = new Uri("https://private-anon-8cea0feb9b-blissrecruitmentapi.apiary-mock.com/questions/" + detailedQuestion.id);
+
+            try {
+
+                HttpResponseMessage httpResponse = await httpClient.PutAsync(putTo, httpContent);
+
+                MessageDialog m = null;
+
+                if (httpResponse.StatusCode == HttpStatusCode.Created) {
+                    m = new MessageDialog("Thank you for voting!");
+                }
+
+                if (httpResponse.StatusCode == HttpStatusCode.BadRequest) {
+                    m = new MessageDialog("Sorry, something went wrong... Your vote wasn't accepted");
+                }
+
+                if(m != null) {
+                    await m.ShowAsync();
+                }
+
+            }
+            catch (Exception e) {
+                System.Diagnostics.Debug.WriteLine("Error: " + e.ToString());
+            }
+           
+            
         }
     }
 }

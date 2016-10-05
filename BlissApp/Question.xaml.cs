@@ -21,7 +21,15 @@ using Windows.Web.Http;
 namespace BlissApp {
     public sealed partial class Question : UserControl {
 
+        public uint id { get; set; }
+
         public string QuestionText { get; set; }
+
+        public string img_url { get; set; }
+
+        public string thumb_url { get; set; }
+
+        public string date { get; set; }
 
         public ImageSource ThumbImage { get; set; }
 
@@ -36,7 +44,12 @@ namespace BlissApp {
 
         public Question(uint id, string text, string img, string thumb, string date, Choice[]choices) : this(){
 
-            QuestionText = id + ": " + text;
+            this.id = id;
+
+            QuestionText = text;
+            img_url = img;
+            thumb_url = thumb;
+            this.date = date;
 
             QuestionImage = new BitmapImage(new Uri(img));
             ThumbImage = new BitmapImage(new Uri(thumb));
