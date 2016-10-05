@@ -73,34 +73,9 @@ namespace BlissApp {
 
                     JsonObject current = jsonArray.GetObjectAt(i);
 
-                    uint id = (uint)current.GetNamedNumber("id");
-                    string question =       current.GetNamedString("question");
-                    string image =          current.GetNamedString("image_url");
-                    string thumb =          current.GetNamedString("thumb_url");
-                    string datePublished =  current.GetNamedString("published_at");
+                    Question q = Utils.Json2Question(current);
 
-                    JsonArray jsonChoicesStr = current.GetNamedArray("choices");
-                    List<Choice> choices = new List<Choice>();
-
-                    for (uint j = 0; j < jsonChoicesStr.Count; j++) {
-
-                        Choice c = new Choice(
-                            jsonChoicesStr.GetObjectAt(j).GetNamedString("choice"),
-                            (uint)jsonChoicesStr.GetObjectAt(j).GetNamedNumber("votes")
-                        );
-
-                        choices.Add(c);
-
-                    }
-
-                    questionListSource.Add(new Question(
-                        id,
-                        question,
-                        image,
-                        thumb,
-                        datePublished,
-                        choices.ToArray()
-                    ));
+                    questionListSource.Add( q );
 
                 }
 
