@@ -1,0 +1,5 @@
+
+How to run the application:
+	- Open /BlissApp/BlissApp.sln in Visual Studio 2015
+	- Build the solution (Ctrl+Shift+B or F7 or click Build->"Build Solution").
+	- Run the project (press F5 or click Debug->"Start Debugging").
